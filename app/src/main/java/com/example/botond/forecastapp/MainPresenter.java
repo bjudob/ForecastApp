@@ -1,43 +1,36 @@
 package com.example.botond.forecastapp;
 
-import android.util.Log;
-import android.view.View;
-
-import com.example.botond.forecastapp.domain.Weather;
+import com.example.botond.forecastapp.domain.Forecast;
 import com.example.botond.forecastapp.service.ServiceFactory;
-import com.example.botond.forecastapp.service.WeatherService;
-
-import java.util.List;
+import com.example.botond.forecastapp.service.ForecastService;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import rx.Subscriber;
-import rx.schedulers.Schedulers;
 
 public class MainPresenter implements MainMVP.presenter {
 
-    private WeatherService service;
+    private ForecastService service;
     private MainMVP.view view;
 
     public MainPresenter(){
         service= ServiceFactory.createRetrofitService(
-                WeatherService.class,
-                WeatherService.SERVICE_ENDPOINT);
+                ForecastService.class,
+                ForecastService.SERVICE_ENDPOINT);
     }
 
     @Override
     public void forecastButtonClick() {
-        Call<Weather> call = service.getWeather();
+        Call<Forecast> call = service.getWeather("42.3601,-71.0589");
 
-        call.enqueue(new Callback<Weather>() {
+        call.enqueue(new Callback<Forecast>() {
             @Override
-            public void onResponse(Call<Weather> call, Response<Weather> response) {
-                Weather weather=response.body();
+            public void onResponse(Call<Forecast> call, Response<Forecast> response) {
+                Forecast forecast =response.body();
             }
 
             @Override
-            public void onFailure(Call<Weather> call, Throwable t) {
+            public void onFailure(Call<Forecast> call, Throwable t) {
                 view.showToast("Connection failed!");
             }
         });

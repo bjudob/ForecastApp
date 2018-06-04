@@ -10,8 +10,9 @@ public interface WeatherService {
     String KEY = "d86c7b39b933a92d3c3710792d00dae0";
     String SERVICE_ENDPOINT = "https://api.darksky.net/forecast/";
 
-    @GET("/{coordinates}")
-    Call<Weather> getWeather(@Path("coordinates") String name);
+    @GET("d86c7b39b933a92d3c3710792d00dae0/42.3601,-71.0589")
+    Call<Weather> getWeather();
+    //Call<Weather> getWeather(@Path("coord") String coord);
 
 
 }

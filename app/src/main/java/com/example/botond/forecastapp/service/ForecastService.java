@@ -7,10 +7,10 @@ import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface ForecastService {
-    String DARKSKY_KEY = "d86c7b39b933a92d3c3710792d00dae0";
+    String DARK_SKY_KEY = "d86c7b39b933a92d3c3710792d00dae0";
     String SERVICE_ENDPOINT = "https://api.darksky.net/forecast/";
 
-    @GET(DARKSKY_KEY+"/{coords}")
+    @GET(DARK_SKY_KEY+"/{coords}")
     Call<Forecast> getWeather(@Path("coords") String coords);
 
 

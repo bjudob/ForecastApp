@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements MainMVP.view{
 
-    private Button m_ForecastButton;
+    private Button buttonForecast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,9 +17,9 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view{
 
         final MainPresenter presenter=new MainPresenter();
 
-        m_ForecastButton=(Button) findViewById(R.id.buttonForecast);
+        buttonForecast =(Button) findViewById(R.id.buttonForecast);
 
-        m_ForecastButton.setOnClickListener(new View.OnClickListener() {
+        buttonForecast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 presenter.forecastButtonClick();

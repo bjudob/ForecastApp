@@ -1,6 +1,7 @@
 package com.example.botond.forecastapp.domain;
 
 public class Weather {
+    private double time;
     private String summary;
     private String precipType;
     private double humidity;
@@ -54,5 +55,13 @@ public class Weather {
 
     public void setUvIndex(double uvIndex) {
         this.uvIndex = uvIndex;
+    }
+
+    public double getTime() {
+        return time;
+    }
+
+    public void setTime(double time) {
+        this.time = time;
     }
 }

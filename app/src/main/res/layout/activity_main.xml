@@ -50,7 +50,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextCoordinateX" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonForecast"
         android:layout_width="185dp"
         android:layout_height="69dp"
         android:layout_marginBottom="24dp"

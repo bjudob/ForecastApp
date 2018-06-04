@@ -13,7 +13,9 @@ public class MainPresenter implements MainMVP.presenter {
     private ForecastService service;
     private MainMVP.view view;
 
-    public MainPresenter(){
+    public MainPresenter(MainMVP.view view){
+        this.view=view;
+
         service= ServiceFactory.createRetrofitService(
                 ForecastService.class,
                 ForecastService.SERVICE_ENDPOINT);
@@ -27,6 +29,9 @@ public class MainPresenter implements MainMVP.presenter {
             @Override
             public void onResponse(Call<Forecast> call, Response<Forecast> response) {
                 Forecast forecast =response.body();
+
+                view.showForecast(forecast
+                );
             }
 
             @Override

@@ -2,8 +2,9 @@ package com.example.botond.forecastapp;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MainMVP.view{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -12,4 +13,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void showToast(String message) {
+        Toast.makeText(this.getBaseContext(),message,
+                Toast.LENGTH_SHORT).show();
+    }
 }

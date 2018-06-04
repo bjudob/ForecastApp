@@ -2,7 +2,7 @@ package com.example.botond.forecastapp;
 
 public interface MainMVP {
     interface view{
-        void showMessage();
+        void showToast(String message);
     }
 
     interface presenter{

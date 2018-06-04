@@ -12,6 +12,9 @@ import android.widget.Toast;
 import com.example.botond.forecastapp.domain.Forecast;
 import com.example.botond.forecastapp.domain.Weather;
 
+import java.security.Timestamp;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity implements MainMVP.view{
 
     private static final String CURRENTLY  = "Currently: ";
@@ -57,6 +60,9 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view{
                 R.layout.list_item, forecast.getDaily().getData());
 
         listViewForecast.setAdapter(adapter);
+
+        double timeStamp=forecast.getCurrently().getTime();
+        java.util.Date time=new java.util.Date((long)timeStamp*1000);
     }
 
 

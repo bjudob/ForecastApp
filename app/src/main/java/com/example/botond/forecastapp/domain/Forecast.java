@@ -39,4 +39,12 @@ public class Forecast {
     public void setCurrently(Weather currently) {
         this.currently = currently;
     }
+
+    public DailyForecast getDaily() {
+        return daily;
+    }
+
+    public void setDaily(DailyForecast daily) {
+        this.daily = daily;
+    }
 }

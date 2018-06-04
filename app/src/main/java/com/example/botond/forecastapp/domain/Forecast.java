@@ -6,6 +6,7 @@ public class Forecast {
     private double latitude;
     private double longitude;
     private Weather currently;
+    private DailyForecast daily;
 
     public String getTimezone() {
         return timezone;

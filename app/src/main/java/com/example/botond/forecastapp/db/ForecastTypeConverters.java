@@ -9,7 +9,7 @@ import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 
-public class TypeConverters {
+public class ForecastTypeConverters {
     @TypeConverter
     public static Weather stringToWeather(String json) {
         Gson gson = new Gson();

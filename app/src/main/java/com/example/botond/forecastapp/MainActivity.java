@@ -27,7 +27,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity implements MainMVP.view {
 
     private static final String CURRENTLY = "Currently: ";
-    private static final Boolean TESTING = true;
+    private static final Boolean TESTING = false;
     private static final int GET_LOCATION_REQUEST_CODE = 1234;
 
     private Button buttonForecast, buttonLocalCoords;
@@ -97,22 +97,23 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
 
     public void localCoordsButtonClick() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
             String[] permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION};
             ActivityCompat.requestPermissions(this, permissions, GET_LOCATION_REQUEST_CODE);
             return;
         }
-        setLocalCoords();
+        getLocalCoordinates();
 
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         if (requestCode == GET_LOCATION_REQUEST_CODE) {
-            setLocalCoords();
+            getLocalCoordinates();
         }
     }
 
-    private void setLocalCoords() {
+    private void getLocalCoordinates() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }

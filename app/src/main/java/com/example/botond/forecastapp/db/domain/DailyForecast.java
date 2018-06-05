@@ -1,4 +1,4 @@
-package com.example.botond.forecastapp.domain;
+package com.example.botond.forecastapp.db.domain;
 
 import java.util.List;
 

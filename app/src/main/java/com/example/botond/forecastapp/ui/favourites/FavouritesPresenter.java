@@ -1,12 +1,10 @@
-package com.example.botond.forecastapp.favourites;
+package com.example.botond.forecastapp.ui.favourites;
 
 import android.content.Context;
-import android.widget.ArrayAdapter;
 
-import com.example.botond.forecastapp.R;
 import com.example.botond.forecastapp.db.ForecastDao;
 import com.example.botond.forecastapp.db.ForecastDatabase;
-import com.example.botond.forecastapp.domain.Forecast;
+import com.example.botond.forecastapp.db.domain.Forecast;
 
 import java.util.List;
 

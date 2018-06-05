@@ -7,7 +7,7 @@ import android.arch.persistence.room.RoomDatabase;
 import android.arch.persistence.room.TypeConverters;
 import android.content.Context;
 
-import com.example.botond.forecastapp.domain.Forecast;
+import com.example.botond.forecastapp.db.domain.Forecast;
 
 @Database(entities = {Forecast.class},version = 1)
 @TypeConverters(ForecastTypeConverters.class)

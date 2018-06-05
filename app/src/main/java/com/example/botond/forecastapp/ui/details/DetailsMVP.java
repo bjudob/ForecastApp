@@ -1,8 +1,6 @@
-package com.example.botond.forecastapp.details;
+package com.example.botond.forecastapp.ui.details;
 
-import com.example.botond.forecastapp.domain.Forecast;
-
-import java.util.List;
+import com.example.botond.forecastapp.db.domain.Forecast;
 
 public interface DetailsMVP {
     interface view{

@@ -1,4 +1,4 @@
-package com.example.botond.forecastapp.main;
+package com.example.botond.forecastapp.ui.main;
 
 import android.Manifest;
 import android.content.Intent;
@@ -17,10 +17,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.botond.forecastapp.favourites.FavouritesActivity;
+import com.example.botond.forecastapp.ui.favourites.FavouritesActivity;
 import com.example.botond.forecastapp.R;
-import com.example.botond.forecastapp.domain.Forecast;
-import com.example.botond.forecastapp.domain.Weather;
+import com.example.botond.forecastapp.db.domain.Forecast;
+import com.example.botond.forecastapp.db.domain.Weather;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;

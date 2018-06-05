@@ -1,9 +1,9 @@
-package com.example.botond.forecastapp.domain;
+package com.example.botond.forecastapp.db.domain;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 
-import com.example.botond.forecastapp.converter.DateConverter;
+import com.example.botond.forecastapp.utils.DateConverter;
 
 import java.util.Calendar;
 import java.util.Date;

@@ -4,7 +4,7 @@ import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
-import com.example.botond.forecastapp.domain.Forecast;
+import com.example.botond.forecastapp.db.domain.Forecast;
 
 import java.util.List;
 

@@ -1,8 +1,6 @@
-package com.example.botond.forecastapp.main;
+package com.example.botond.forecastapp.ui.main;
 
-import android.content.Context;
-
-import com.example.botond.forecastapp.domain.Forecast;
+import com.example.botond.forecastapp.db.domain.Forecast;
 
 public interface MainMVP {
     interface view{

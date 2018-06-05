@@ -2,8 +2,8 @@ package com.example.botond.forecastapp.db;
 
 import android.arch.persistence.room.TypeConverter;
 
-import com.example.botond.forecastapp.domain.DailyForecast;
-import com.example.botond.forecastapp.domain.Weather;
+import com.example.botond.forecastapp.db.domain.DailyForecast;
+import com.example.botond.forecastapp.db.domain.Weather;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

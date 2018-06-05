@@ -1,10 +1,10 @@
-package com.example.botond.forecastapp.details;
+package com.example.botond.forecastapp.ui.details;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.botond.forecastapp.R;
-import com.example.botond.forecastapp.domain.Forecast;
+import com.example.botond.forecastapp.db.domain.Forecast;
 
 public class DetailsActivity extends AppCompatActivity implements DetailsMVP.view{
 

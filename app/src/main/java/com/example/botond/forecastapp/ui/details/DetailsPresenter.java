@@ -1,4 +1,4 @@
-package com.example.botond.forecastapp.details;
+package com.example.botond.forecastapp.ui.details;
 
 public class DetailsPresenter implements DetailsMVP.presenter{
     @Override

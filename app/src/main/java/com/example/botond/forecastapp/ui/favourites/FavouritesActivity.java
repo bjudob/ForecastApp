@@ -1,6 +1,5 @@
-package com.example.botond.forecastapp.favourites;
+package com.example.botond.forecastapp.ui.favourites;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,8 +9,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.botond.forecastapp.R;
-import com.example.botond.forecastapp.domain.Forecast;
-import com.example.botond.forecastapp.domain.Weather;
+import com.example.botond.forecastapp.db.domain.Forecast;
 
 import java.util.List;
 

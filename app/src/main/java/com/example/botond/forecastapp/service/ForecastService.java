@@ -1,6 +1,6 @@
 package com.example.botond.forecastapp.service;
 
-import com.example.botond.forecastapp.domain.Forecast;
+import com.example.botond.forecastapp.db.domain.Forecast;
 
 import retrofit2.Call;
 import retrofit2.http.GET;

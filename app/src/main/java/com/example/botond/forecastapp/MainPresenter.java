@@ -1,6 +1,14 @@
 package com.example.botond.forecastapp;
 
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.support.constraint.ConstraintLayout;
+import android.util.Log;
+
+import com.example.botond.forecastapp.db.ForecastDao;
+import com.example.botond.forecastapp.db.ForecastDatabase;
 import com.example.botond.forecastapp.domain.Forecast;
 import com.example.botond.forecastapp.service.ServiceFactory;
 import com.example.botond.forecastapp.service.ForecastService;
@@ -8,19 +16,28 @@ import com.example.botond.forecastapp.service.ForecastService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
+import rx.Subscriber;
+import rx.schedulers.Schedulers;
 
 public class MainPresenter implements MainMVP.presenter {
 
     private ForecastService service;
     private MainMVP.view view;
     private Forecast forecastCurrent;
+    private ForecastDao dao;
 
-    public MainPresenter(MainMVP.view view) {
+    public MainPresenter(MainMVP.view view, Context context) {
         this.view = view;
 
         service = ServiceFactory.createRetrofitService(
                 ForecastService.class,
                 ForecastService.SERVICE_ENDPOINT);
+
+        dao= ForecastDatabase.getDatabase(context).dao();
+
+        if(!networkConnectivity(context)){
+            view.showToast("No internet connection!");
+        }
     }
 
     @Override
@@ -62,10 +79,26 @@ public class MainPresenter implements MainMVP.presenter {
 
     @Override
     public void favouriteButtonClick() {
-
+        insertForecast(forecastCurrent);
 
         view.showToast("Forecast saved to favourites!");
         view.hideFavouriteButton();
+    }
+
+    void insertForecast(final Forecast forecast) {
+        new Thread(new Runnable() {
+            public void run() {
+                dao.insertForecast(forecast);
+            }
+        }).start();
+    }
+
+    boolean networkConnectivity(Context context) {
+        ConnectivityManager cm = (ConnectivityManager) context
+                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert cm != null;
+        NetworkInfo networkInfo = cm.getActiveNetworkInfo();
+        return networkInfo != null && networkInfo.isConnected();
     }
 
 }

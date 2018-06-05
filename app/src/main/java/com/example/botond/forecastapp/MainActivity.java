@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final MainPresenter presenter = new MainPresenter(this);
+        final MainPresenter presenter = new MainPresenter(this,this);
 
         buttonLocalCoords = (Button) findViewById(R.id.buttonLocalCoords);
         buttonForecast = (Button) findViewById(R.id.buttonForecast);

@@ -4,6 +4,8 @@ package com.example.botond.forecastapp.ui.main;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.example.botond.forecastapp.db.ForecastDao;
 import com.example.botond.forecastapp.db.ForecastDatabase;
@@ -57,6 +59,7 @@ public class MainPresenter implements MainMVP.presenter {
 
                 String coords = latitude + "," + longitude;
 
+                view.setProgressBarVisibility(View.VISIBLE);
                 Call<Forecast> call = service.getWeather(coords);
 
                 call.enqueue(new Callback<Forecast>() {

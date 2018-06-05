@@ -1,5 +1,7 @@
 package com.example.botond.forecastapp.ui.main;
 
+import android.widget.ProgressBar;
+
 import com.example.botond.forecastapp.db.domain.Forecast;
 
 public interface MainMVP {
@@ -7,6 +9,7 @@ public interface MainMVP {
         void showToast(String message);
         void showForecast(Forecast forecast);
         void hideFavouriteButton();
+        void setProgressBarVisibility(int visibility);
     }
 
     interface presenter{

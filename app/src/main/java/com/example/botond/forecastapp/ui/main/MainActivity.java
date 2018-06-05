@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.preference.PreferenceGroup;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
     private EditText editTextLatitude, editTextLongitude;
     private TextView textViewCurrently;
     private ListView listViewForecast;
+    private ProgressBar progressBar;
     private ArrayAdapter adapter;
 
     private FusedLocationProviderClient fusedLocationClient;
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
         listViewForecast = (ListView) findViewById(R.id.listViewForecast);
         editTextLatitude = (EditText) findViewById(R.id.editTextLatitude);
         editTextLongitude = (EditText) findViewById(R.id.editTextLongitude);
+        progressBar=(ProgressBar) findViewById(R.id.progressBar);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -120,12 +124,18 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
 
         listViewForecast.setAdapter(adapter);
 
+        progressBar.setVisibility(View.GONE);
         buttonFavourite.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideFavouriteButton() {
         buttonFavourite.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void setProgressBarVisibility(int visibility) {
+        progressBar.setVisibility(visibility);
     }
 
     public void localCoordsButtonClick() {

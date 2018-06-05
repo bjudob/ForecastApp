@@ -51,7 +51,7 @@ public class DetailsActivity extends AppCompatActivity implements DetailsMVP.vie
 
     @Override
     public void showForecast(Forecast forecast) {
-        textViewCurrently.setText(forecast.getCurrently().toString());
+        textViewCurrently.setText(forecast.toString());
 
         adapter = new ArrayAdapter<Weather>(this,
                 R.layout.list_item, forecast.getDaily().getData());

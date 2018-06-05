@@ -63,4 +63,9 @@ public class MainPresenter implements MainMVP.presenter {
         }
     }
 
+    @Override
+    public void favouriteButtonClick(Forecast forecast) {
+        
+    }
+
 }

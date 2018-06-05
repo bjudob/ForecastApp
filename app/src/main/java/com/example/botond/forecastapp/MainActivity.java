@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
     private static final Boolean TESTING = false;
     private static final int GET_LOCATION_REQUEST_CODE = 1234;
 
-    private Button buttonForecast, buttonLocalCoords;
+    private Button buttonForecast, buttonLocalCoords, buttonFavourite;
     private EditText editTextLatitude, editTextLongitude;
     private TextView textViewCurrently;
     private ListView listViewForecast;
@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
 
         buttonLocalCoords = (Button) findViewById(R.id.buttonLocalCoords);
         buttonForecast = (Button) findViewById(R.id.buttonForecast);
+        buttonFavourite = (Button) findViewById(R.id.buttonFavourite);
         textViewCurrently = (TextView) findViewById(R.id.textViewCurrently);
         listViewForecast = (ListView) findViewById(R.id.listViewForecast);
         editTextLatitude = (EditText) findViewById(R.id.editTextLatitude);
@@ -65,6 +66,13 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
             @Override
             public void onClick(View view) {
                 localCoordsButtonClick();
+            }
+        });
+
+        buttonFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
             }
         });
 

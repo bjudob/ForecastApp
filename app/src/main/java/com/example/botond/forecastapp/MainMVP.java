@@ -12,5 +12,6 @@ public interface MainMVP {
 
     interface presenter{
         void forecastButtonClick(String latitude, String longitude);
+        void favouriteButtonClick(Forecast forecast);
     }
 }

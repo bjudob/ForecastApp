@@ -6,4 +6,5 @@
     <string name="forecastButton">Forecast</string>
     <string name="latitude">Latitude</string>
     <string name="longitude">Longitude</string>
+    <string name="currently">Currently</string>
 </resources>

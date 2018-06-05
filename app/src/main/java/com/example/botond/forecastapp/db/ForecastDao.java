@@ -14,6 +14,9 @@ public interface ForecastDao {
     @Query("select * from forecasts")
     List<Forecast> getForecasts();
 
+    @Query("SELECT * FROM forecasts WHERE id = :forecastId LIMIT 1")
+    Forecast getForecastById(int forecastId);
+
     @Insert
     void insertForecast(Forecast fc);
 

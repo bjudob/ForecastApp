@@ -1,11 +1,14 @@
 package com.example.botond.forecastapp;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -75,8 +78,28 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
                 localCoordsButtonClick();
             }
         });
+    }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main_toolbar, menu);
+        return true;
+    }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menuFavourites:
+                //finish();
+
+                Intent intent = new Intent(this, FavouritesActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+        return true;
     }
 
     @Override

@@ -5,6 +5,8 @@ import com.example.botond.forecastapp.domain.Forecast;
 import com.example.botond.forecastapp.service.ServiceFactory;
 import com.example.botond.forecastapp.service.ForecastService;
 
+import java.util.Date;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

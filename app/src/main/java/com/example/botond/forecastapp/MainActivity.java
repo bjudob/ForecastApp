@@ -75,10 +75,9 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
 
     }
 
-
     @Override
     public void showToast(String message) {
-        Toast.makeText(this.getBaseContext(), message,
+        Toast.makeText(this, message,
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -134,17 +133,5 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
                     }
                 });
     }
-
-    @Override
-    public void setLatitudeText(String text) {
-        editTextLatitude.setText(text);
-    }
-
-    @Override
-    public void setLongitudeText(String text) {
-        editTextLatitude.setText(text);
-    }
-
-
 
 }

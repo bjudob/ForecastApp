@@ -1,5 +1,6 @@
 package com.example.botond.forecastapp;
 
+
 import com.example.botond.forecastapp.domain.Forecast;
 import com.example.botond.forecastapp.service.ServiceFactory;
 import com.example.botond.forecastapp.service.ForecastService;
@@ -13,32 +14,49 @@ public class MainPresenter implements MainMVP.presenter {
     private ForecastService service;
     private MainMVP.view view;
 
-    public MainPresenter(MainMVP.view view){
-        this.view=view;
+    public MainPresenter(MainMVP.view view) {
+        this.view = view;
 
-        service= ServiceFactory.createRetrofitService(
+        service = ServiceFactory.createRetrofitService(
                 ForecastService.class,
                 ForecastService.SERVICE_ENDPOINT);
     }
 
     @Override
-    public void forecastButtonClick() {
-        Call<Forecast> call = service.getWeather("42.3601,-71.0589");
+    public void forecastButtonClick(String latitude, String longitude) {
 
-        call.enqueue(new Callback<Forecast>() {
-            @Override
-            public void onResponse(Call<Forecast> call, Response<Forecast> response) {
-                Forecast forecast =response.body();
+        try {
+            double testLat = Double.parseDouble(latitude);
+            double testLong = Double.parseDouble(longitude);
 
-                view.showForecast(forecast
-                );
+            if (testLat < -180 || testLat > 180) {
+                throw new NumberFormatException("Latitude out of range");
+            }
+            if (testLong < -180 || testLong > 180) {
+                throw new NumberFormatException("Longitude out of range");
             }
 
-            @Override
-            public void onFailure(Call<Forecast> call, Throwable t) {
-                view.showToast("Connection failed!");
-            }
-        });
+            String coords = latitude + "," + longitude;
 
+            Call<Forecast> call = service.getWeather(coords);
+
+            call.enqueue(new Callback<Forecast>() {
+                @Override
+                public void onResponse(Call<Forecast> call, Response<Forecast> response) {
+                    Forecast forecast = response.body();
+
+                    view.showForecast(forecast
+                    );
+                }
+
+                @Override
+                public void onFailure(Call<Forecast> call, Throwable t) {
+                    view.showToast("Something went wrong!");
+                }
+            });
+        } catch (NumberFormatException e) {
+            view.showToast("Invalid coordinates!");
+        }
     }
+
 }

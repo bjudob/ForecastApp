@@ -27,7 +27,7 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/X"
+        android:hint="@string/latitude"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
@@ -39,21 +39,20 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="@string/Y"
+        android:hint="@string/longitude"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextCoordinateX" />
 
     <Button
         android:id="@+id/buttonForecast"
-        android:layout_width="118dp"
-        android:layout_height="52dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
         android:text="@string/forecastButton"
         app:layout_constraintBottom_toBottomOf="@+id/editTextCoordinateY"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextCoordinateX" />
+        app:layout_constraintStart_toEndOf="@+id/editTextCoordinateY"
+        app:layout_constraintTop_toTopOf="@+id/editTextCoordinateY" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -87,7 +86,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.36" />
+        app:layout_constraintGuide_begin="200dp" />
 
     <TextView
         android:id="@+id/textViewCurrently"
@@ -101,5 +100,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextCoordinateY" />
+
+    <Button
+        android:id="@+id/buttonLocalCoords"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:text="Local Coords"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextCoordinateX"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextCoordinateX"
+        app:layout_constraintTop_toTopOf="@+id/editTextCoordinateX" />
 
 </android.support.constraint.ConstraintLayout>

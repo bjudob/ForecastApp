@@ -1,44 +1,74 @@
 package com.example.botond.forecastapp;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.botond.forecastapp.domain.Forecast;
 import com.example.botond.forecastapp.domain.Weather;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 
 import java.security.Timestamp;
 import java.util.Date;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements MainMVP.view{
+public class MainActivity extends AppCompatActivity implements MainMVP.view {
 
-    private static final String CURRENTLY  = "Currently: ";
+    private static final String CURRENTLY = "Currently: ";
+    private static final Boolean TESTING = true;
+    private static final int GET_LOCATION_REQUEST_CODE = 1234;
 
-    private Button buttonForecast;
+    private Button buttonForecast, buttonLocalCoords;
+    private EditText editTextLatitude, editTextLongitude;
     private TextView textViewCurrently;
     private ListView listViewForecast;
     private ArrayAdapter adapter;
+    private FusedLocationProviderClient fusedLocationClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final MainPresenter presenter=new MainPresenter(this);
+        final MainPresenter presenter = new MainPresenter(this);
 
-        buttonForecast =(Button) findViewById(R.id.buttonForecast);
-        textViewCurrently=(TextView) findViewById(R.id.textViewCurrently);
-        listViewForecast=(ListView) findViewById(R.id.listViewForecast);
+        buttonLocalCoords = (Button) findViewById(R.id.buttonLocalCoords);
+        buttonForecast = (Button) findViewById(R.id.buttonForecast);
+        textViewCurrently = (TextView) findViewById(R.id.textViewCurrently);
+        listViewForecast = (ListView) findViewById(R.id.listViewForecast);
+        editTextLatitude = (EditText) findViewById(R.id.editTextCoordinateX);
+        editTextLongitude = (EditText) findViewById(R.id.editTextCoordinateY);
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        if (TESTING) {
+            editTextLatitude.setText("42.3601");
+            editTextLongitude.setText("-71.0589");
+        }
 
         buttonForecast.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                presenter.forecastButtonClick();
+                presenter.forecastButtonClick(editTextLatitude.getText().toString(), editTextLongitude.getText().toString());
+            }
+        });
+
+        buttonLocalCoords.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                localCoordsButtonClick();
             }
         });
 
@@ -48,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view{
 
     @Override
     public void showToast(String message) {
-        Toast.makeText(this.getBaseContext(),message,
+        Toast.makeText(this.getBaseContext(), message,
                 Toast.LENGTH_SHORT).show();
     }
 
@@ -61,9 +91,59 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view{
 
         listViewForecast.setAdapter(adapter);
 
-        double timeStamp=forecast.getCurrently().getTime();
-        java.util.Date time=new java.util.Date((long)timeStamp*1000);
+        double timeStamp = forecast.getCurrently().getTime();
+        java.util.Date time = new java.util.Date((long) timeStamp * 1000);
     }
+
+    public void localCoordsButtonClick() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            String[] permissions = new String[]{Manifest.permission.ACCESS_FINE_LOCATION};
+            ActivityCompat.requestPermissions(this, permissions, GET_LOCATION_REQUEST_CODE);
+            return;
+        }
+        setLocalCoords();
+
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (requestCode == GET_LOCATION_REQUEST_CODE) {
+            setLocalCoords();
+        }
+    }
+
+    private void setLocalCoords() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, new OnSuccessListener<Location>() {
+                    @Override
+                    public void onSuccess(Location location) {
+                        // Got last known location. In some rare situations this can be null.
+                        if (location != null) {
+                            Double latitude=location.getLatitude();
+                            Double longitude=location.getLongitude();
+
+                            editTextLatitude.setText(latitude.toString());
+                            editTextLongitude.setText(longitude.toString());
+                        }else{
+                            showToast("Please turn on the location service!");
+                        }
+                    }
+                });
+    }
+
+    @Override
+    public void setLatitudeText(String text) {
+        editTextLatitude.setText(text);
+    }
+
+    @Override
+    public void setLongitudeText(String text) {
+        editTextLatitude.setText(text);
+    }
+
 
 
 }

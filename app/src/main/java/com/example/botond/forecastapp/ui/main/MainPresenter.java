@@ -21,9 +21,11 @@ public class MainPresenter implements MainMVP.presenter {
     private MainMVP.view view;
     private Forecast forecastCurrent;
     private ForecastDao dao;
+    private Context context;
 
     public MainPresenter(MainMVP.view view, Context context) {
         this.view = view;
+        this.context=context;
 
         service = ServiceFactory.createRetrofitService(
                 ForecastService.class,
@@ -38,38 +40,42 @@ public class MainPresenter implements MainMVP.presenter {
 
     @Override
     public void forecastButtonClick(String latitude, String longitude) {
+        if(!networkConnectivity(context)){
+            view.showToast("No internet connection!");
+        }
+        else {
+            try {
+                double testLat = Double.parseDouble(latitude);
+                double testLong = Double.parseDouble(longitude);
 
-        try {
-            double testLat = Double.parseDouble(latitude);
-            double testLong = Double.parseDouble(longitude);
-
-            if (testLat < -180 || testLat > 180) {
-                throw new NumberFormatException("Latitude out of range");
-            }
-            if (testLong < -180 || testLong > 180) {
-                throw new NumberFormatException("Longitude out of range");
-            }
-
-            String coords = latitude + "," + longitude;
-
-            Call<Forecast> call = service.getWeather(coords);
-
-            call.enqueue(new Callback<Forecast>() {
-                @Override
-                public void onResponse(Call<Forecast> call, Response<Forecast> response) {
-                    Forecast forecast = response.body();
-
-                    forecastCurrent=forecast;
-                    view.showForecast(forecastCurrent);
+                if (testLat < -180 || testLat > 180) {
+                    throw new NumberFormatException("Latitude out of range");
+                }
+                if (testLong < -180 || testLong > 180) {
+                    throw new NumberFormatException("Longitude out of range");
                 }
 
-                @Override
-                public void onFailure(Call<Forecast> call, Throwable t) {
-                    view.showToast("Something went wrong!");
-                }
-            });
-        } catch (NumberFormatException e) {
-            view.showToast("Invalid coordinates!");
+                String coords = latitude + "," + longitude;
+
+                Call<Forecast> call = service.getWeather(coords);
+
+                call.enqueue(new Callback<Forecast>() {
+                    @Override
+                    public void onResponse(Call<Forecast> call, Response<Forecast> response) {
+                        Forecast forecast = response.body();
+
+                        forecastCurrent = forecast;
+                        view.showForecast(forecastCurrent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<Forecast> call, Throwable t) {
+                        view.showToast("Something went wrong!");
+                    }
+                });
+            } catch (NumberFormatException e) {
+                view.showToast("Invalid coordinates!");
+            }
         }
     }
 

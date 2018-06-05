@@ -33,5 +33,4 @@ public abstract class ForecastDatabase extends RoomDatabase{
         INSTANCE = null;
     }
 
-
 }

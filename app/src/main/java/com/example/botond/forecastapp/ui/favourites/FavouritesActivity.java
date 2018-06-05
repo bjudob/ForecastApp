@@ -1,5 +1,6 @@
 package com.example.botond.forecastapp.ui.favourites;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import com.example.botond.forecastapp.R;
 import com.example.botond.forecastapp.db.domain.Forecast;
+import com.example.botond.forecastapp.ui.details.DetailsActivity;
 
 import java.util.List;
 
@@ -51,5 +53,14 @@ public class FavouritesActivity extends AppCompatActivity implements FavouritesM
                 R.layout.list_item, forecasts);
 
         listViewFavourites.setAdapter(adapter);
+    }
+
+    @Override
+    public void showDetails(int id){
+        Intent intent = new Intent(FavouritesActivity.this, DetailsActivity.class);
+
+        intent.putExtra("id", id);
+        startActivity(intent);
+        //finish();
     }
 }

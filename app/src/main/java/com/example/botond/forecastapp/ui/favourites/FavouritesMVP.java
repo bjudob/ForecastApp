@@ -9,6 +9,7 @@ public interface FavouritesMVP {
     interface view{
         void showToast(String message);
         void showFavourites(List<Forecast> forecasts);
+        void showDetails(int id);
     }
 
     interface presenter{

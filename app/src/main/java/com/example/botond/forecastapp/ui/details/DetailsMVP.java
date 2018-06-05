@@ -9,6 +9,6 @@ public interface DetailsMVP {
     }
 
     interface presenter{
-        void loadForecast();
+        void loadForecast(int id);
     }
 }

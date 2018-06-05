@@ -1,11 +1,18 @@
 package com.example.botond.forecastapp.domain;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+
 import com.example.botond.forecastapp.converter.DateConverter;
 
 import java.util.Calendar;
 import java.util.Date;
 
+@Entity(tableName = "forecasts")
 public class Forecast {
+
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
     private String timezone;
     private double latitude;

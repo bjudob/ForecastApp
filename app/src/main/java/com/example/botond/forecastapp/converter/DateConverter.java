@@ -1,4 +1,4 @@
-package com.example.botond.forecastapp.concerter;
+package com.example.botond.forecastapp.converter;
 
 import java.util.Date;
 

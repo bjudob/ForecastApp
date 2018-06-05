@@ -1,5 +1,10 @@
 package com.example.botond.forecastapp.domain;
 
+import com.example.botond.forecastapp.converter.DateConverter;
+
+import java.util.Calendar;
+import java.util.Date;
+
 public class Forecast {
 
     private String timezone;
@@ -46,5 +51,19 @@ public class Forecast {
 
     public void setDaily(DailyForecast daily) {
         this.daily = daily;
+    }
+
+    @Override
+    public String toString() {
+        Date date= DateConverter.unixTimeToDate(currently.getTime());
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        //Integer year = cal.get(Calendar.YEAR);
+        Integer month = cal.get(Calendar.MONTH);
+        Integer day = cal.get(Calendar.DAY_OF_MONTH);
+
+        String monthString=DateConverter.intToMonth(month);
+
+        return day.toString()+"."+monthString+" "+timezone+": "+currently.getSummary();
     }
 }

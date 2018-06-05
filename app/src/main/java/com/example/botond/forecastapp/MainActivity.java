@@ -22,7 +22,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 
 public class MainActivity extends AppCompatActivity implements MainMVP.view {
 
-    private static final String CURRENTLY = "Currently: ";
     private static final Boolean TESTING = false;
     private static final int GET_LOCATION_REQUEST_CODE = 1234;
 
@@ -89,7 +88,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
     @Override
     public void showForecast(Forecast forecast) {
 
-        textViewCurrently.setText(CURRENTLY + forecast.getCurrently().getSummary());
+        textViewCurrently.setText(forecast.toString());
 
         adapter = new ArrayAdapter<Weather>(this,
                 R.layout.list_item, forecast.getDaily().getData());

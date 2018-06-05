@@ -1,6 +1,6 @@
 package com.example.botond.forecastapp.domain;
 
-import com.example.botond.forecastapp.concerter.DateConverter;
+import com.example.botond.forecastapp.converter.DateConverter;
 
 import java.util.Calendar;
 import java.util.Date;

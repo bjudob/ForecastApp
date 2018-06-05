@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editTextCoordinateX"
+        android:id="@+id/editTextLatitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -32,7 +32,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editTextCoordinateY"
+        android:id="@+id/editTextLongitude"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -41,7 +41,7 @@
         android:inputType="textPersonName"
         android:hint="@string/longitude"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCoordinateX" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLatitude" />
 
     <Button
         android:id="@+id/buttonForecast"
@@ -49,10 +49,21 @@
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:text="@string/forecastButton"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextCoordinateY"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextLongitude"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextCoordinateY"
-        app:layout_constraintTop_toTopOf="@+id/editTextCoordinateY" />
+        app:layout_constraintStart_toEndOf="@+id/editTextLongitude"
+        app:layout_constraintTop_toTopOf="@+id/editTextLongitude" />
+
+    <Button
+        android:id="@+id/buttonLocalCoords"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:text="Local Coords"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextLatitude"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/editTextLatitude"
+        app:layout_constraintTop_toTopOf="@+id/editTextLatitude" />
 
     <ScrollView
         android:id="@+id/scrollView2"
@@ -96,20 +107,23 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="Currently"
+        android:textStyle="bold"
+        android:textSize="17sp"
         android:textColor="@color/colorBlack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextCoordinateY" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextLongitude" />
 
-    <Button
-        android:id="@+id/buttonLocalCoords"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:text="Local Coords"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextCoordinateX"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/editTextCoordinateX"
-        app:layout_constraintTop_toTopOf="@+id/editTextCoordinateX" />
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:src="@drawable/ic_favourite"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </android.support.constraint.ConstraintLayout>

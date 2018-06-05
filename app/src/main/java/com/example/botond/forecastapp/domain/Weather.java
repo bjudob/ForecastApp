@@ -1,5 +1,10 @@
 package com.example.botond.forecastapp.domain;
 
+import com.example.botond.forecastapp.concerter.DateConverter;
+
+import java.util.Calendar;
+import java.util.Date;
+
 public class Weather {
     private double time;
     private String summary;
@@ -67,6 +72,16 @@ public class Weather {
 
     @Override
     public String toString() {
-        return summary;
+        Date date=DateConverter.unixTimeToDate(time);
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        //Integer year = cal.get(Calendar.YEAR);
+        Integer month = cal.get(Calendar.MONTH);
+        Integer day = cal.get(Calendar.DAY_OF_MONTH);
+
+        String monthString=DateConverter.intToMonth(month);
+
+        return day.toString()+"."+monthString+": "+summary;
+
     }
 }

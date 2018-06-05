@@ -20,10 +20,6 @@ import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnSuccessListener;
 
-import java.security.Timestamp;
-import java.util.Date;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity implements MainMVP.view {
 
     private static final String CURRENTLY = "Currently: ";
@@ -48,8 +44,8 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
         buttonForecast = (Button) findViewById(R.id.buttonForecast);
         textViewCurrently = (TextView) findViewById(R.id.textViewCurrently);
         listViewForecast = (ListView) findViewById(R.id.listViewForecast);
-        editTextLatitude = (EditText) findViewById(R.id.editTextCoordinateX);
-        editTextLongitude = (EditText) findViewById(R.id.editTextCoordinateY);
+        editTextLatitude = (EditText) findViewById(R.id.editTextLatitude);
+        editTextLongitude = (EditText) findViewById(R.id.editTextLongitude);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 

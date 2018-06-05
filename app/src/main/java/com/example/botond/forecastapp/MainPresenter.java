@@ -68,6 +68,7 @@ public class MainPresenter implements MainMVP.presenter {
     public void favouriteButtonClick() {
 
 
+        view.showToast("Forecast saved to favourites!");
         view.hideFavouriteButton();
     }
 

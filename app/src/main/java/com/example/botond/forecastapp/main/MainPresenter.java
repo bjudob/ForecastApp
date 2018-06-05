@@ -1,11 +1,9 @@
-package com.example.botond.forecastapp;
+package com.example.botond.forecastapp.main;
 
 
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.constraint.ConstraintLayout;
-import android.util.Log;
 
 import com.example.botond.forecastapp.db.ForecastDao;
 import com.example.botond.forecastapp.db.ForecastDatabase;
@@ -16,8 +14,6 @@ import com.example.botond.forecastapp.service.ForecastService;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import rx.Subscriber;
-import rx.schedulers.Schedulers;
 
 public class MainPresenter implements MainMVP.presenter {
 

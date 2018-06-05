@@ -1,4 +1,4 @@
-package com.example.botond.forecastapp;
+package com.example.botond.forecastapp.main;
 
 import android.content.Context;
 

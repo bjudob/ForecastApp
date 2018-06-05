@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
     private TextView textViewCurrently;
     private ListView listViewForecast;
     private ArrayAdapter adapter;
+
     private FusedLocationProviderClient fusedLocationClient;
 
     @Override
@@ -62,17 +63,17 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
             }
         });
 
+        buttonFavourite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.favouriteButtonClick();
+            }
+        });
+
         buttonLocalCoords.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 localCoordsButtonClick();
-            }
-        });
-
-        buttonFavourite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
             }
         });
 
@@ -87,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
 
     @Override
     public void showForecast(Forecast forecast) {
+
         textViewCurrently.setText(CURRENTLY + forecast.getCurrently().getSummary());
 
         adapter = new ArrayAdapter<Weather>(this,
@@ -94,8 +96,12 @@ public class MainActivity extends AppCompatActivity implements MainMVP.view {
 
         listViewForecast.setAdapter(adapter);
 
-        double timeStamp = forecast.getCurrently().getTime();
-        java.util.Date time = new java.util.Date((long) timeStamp * 1000);
+        buttonFavourite.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideFavouriteButton() {
+        buttonFavourite.setVisibility(View.GONE);
     }
 
     public void localCoordsButtonClick() {

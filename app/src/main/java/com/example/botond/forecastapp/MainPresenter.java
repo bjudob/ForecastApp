@@ -17,6 +17,7 @@ public class MainPresenter implements MainMVP.presenter {
 
     private ForecastService service;
     private MainMVP.view view;
+    private Forecast forecastCurrent;
 
     public MainPresenter(MainMVP.view view) {
         this.view = view;
@@ -49,8 +50,8 @@ public class MainPresenter implements MainMVP.presenter {
                 public void onResponse(Call<Forecast> call, Response<Forecast> response) {
                     Forecast forecast = response.body();
 
-                    view.showForecast(forecast
-                    );
+                    forecastCurrent=forecast;
+                    view.showForecast(forecastCurrent);
                 }
 
                 @Override
@@ -64,8 +65,10 @@ public class MainPresenter implements MainMVP.presenter {
     }
 
     @Override
-    public void favouriteButtonClick(Forecast forecast) {
-        
+    public void favouriteButtonClick() {
+
+
+        view.hideFavouriteButton();
     }
 
 }

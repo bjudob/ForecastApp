@@ -8,10 +8,11 @@ public interface MainMVP {
     interface view{
         void showToast(String message);
         void showForecast(Forecast forecast);
+        void hideFavouriteButton();
     }
 
     interface presenter{
         void forecastButtonClick(String latitude, String longitude);
-        void favouriteButtonClick(Forecast forecast);
+        void favouriteButtonClick();
     }
 }
